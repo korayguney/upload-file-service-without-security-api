@@ -1,4 +1,4 @@
-package dev.patika.patika0306.entity;
+package com.upload.uploadfile.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

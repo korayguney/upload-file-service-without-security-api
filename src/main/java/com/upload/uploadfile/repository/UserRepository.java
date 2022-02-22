@@ -1,6 +1,6 @@
-package dev.patika.patika0306.repository;
+package com.upload.uploadfile.repository;
 
-import dev.patika.patika0306.entity.User;
+import com.upload.uploadfile.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

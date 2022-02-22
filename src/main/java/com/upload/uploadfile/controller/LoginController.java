@@ -1,4 +1,4 @@
-package dev.patika.patika0306.controller;
+package com.upload.uploadfile.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
