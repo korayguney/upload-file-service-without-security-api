@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.context.annotation.Scope;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.Entity;
@@ -20,23 +21,18 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Scope("session")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank(message = "Name is mandatory")
-    private String name;
+    @NotBlank(message = "Username is mandatory")
+    private String username;
 
-    @Min(value = 0, message = "The age cannot be less than 0")
-    @Max(value = 120, message = "The age cannot be greater than 120")
-    @NumberFormat(style = NumberFormat.Style.NUMBER)
-    //@NotBlank(message = "Age is mandatory")
-    private int age;
+    @NotBlank(message = "Password is mandatory")
+    private String password;
 
-    @Email(message = "Email is not valid")
-    @NotBlank(message = "Email is mandatory")
-    private String email;
-
+    private Role role;
 
 }

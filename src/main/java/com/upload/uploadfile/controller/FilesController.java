@@ -44,7 +44,7 @@ public class FilesController {
         try {
             fileService.save(file);
 
-            return "redirect:/";
+            return "redirect:/files";
         } catch (Exception e) {
             return String.format("Could not upload the file: %s!", file.getOriginalFilename());
         }
@@ -61,29 +61,6 @@ public class FilesController {
                         "attachment; filename=\"" + resource.getName() + "\"")
                 .contentType(MediaType.valueOf(resource.getContentType()))
                 .body(resource.getData());
-    }
-
-    @GetMapping
-    public List<FileResponse> list() {
-        return fileService.getAllFiles()
-                          .stream()
-                          .map(this::mapToFileResponse)
-                          .collect(Collectors.toList());
-    }
-
-    private FileResponse mapToFileResponse(File file) {
-        String downloadURL = ServletUriComponentsBuilder.fromCurrentContextPath()
-                                                        .path("/files/")
-                                                        .path(String.valueOf(file.getId()))
-                                                        .toUriString();
-        FileResponse fileResponse = new FileResponse();
-        fileResponse.setId(String.valueOf(file.getId()));
-        fileResponse.setName(file.getName());
-        fileResponse.setContentType(file.getContentType());
-        fileResponse.setSize(file.getSize());
-        fileResponse.setUrl(downloadURL);
-
-        return fileResponse;
     }
 
     @GetMapping("{id}")
